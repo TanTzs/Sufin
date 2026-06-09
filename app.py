@@ -19,12 +19,13 @@ st.set_page_config(
 # ── 全局样式注入 ───────────────────────────────────────────────────────────────
 st.markdown("""
 <style>
-/* ── 顶部栏 ── */
+/* ── 顶部栏（与主区域同色）── */
 header[data-testid="stHeader"] {
-    background: #1e3a5f !important;
-    border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+    background: #f4f7fa !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    box-shadow: none !important;
 }
-header[data-testid="stHeader"] * { color: #7aa0be !important; }
+header[data-testid="stHeader"] * { color: #64748b !important; }
 .stDeployButton { display: none !important; }
 footer { display: none !important; }
 
