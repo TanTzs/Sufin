@@ -18,16 +18,17 @@ st.set_page_config(
 # ── 全局样式注入 ───────────────────────────────────────────────────────────────
 st.markdown("""
 <style>
-/* ── 顶部工具栏 → 深色 ── */
+/* ── 顶部栏 ── */
 header[data-testid="stHeader"] {
-    background: #050d1c !important;
-    border-bottom: 1px solid rgba(14, 165, 233, 0.12) !important;
+    background: #ffffff !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04) !important;
 }
-header[data-testid="stHeader"] * { color: #5a8aaa !important; }
 .stDeployButton { display: none !important; }
+footer { display: none !important; }
 
 /* ── 主区域 ── */
-.stApp { background: #050d1c; }
+.stApp { background: #f1f5f9; }
 .block-container {
     padding-top: 2.5rem !important;
     padding-bottom: 5rem !important;
@@ -36,16 +37,17 @@ header[data-testid="stHeader"] * { color: #5a8aaa !important; }
 
 /* ── 侧边栏 ── */
 [data-testid="stSidebar"] {
-    background: #07111f !important;
-    border-right: 1px solid rgba(14, 165, 233, 0.1) !important;
+    background: #ffffff !important;
+    border-right: 1px solid #e2e8f0 !important;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.04) !important;
 }
 
-/* ── 自定义品牌文字 ── */
+/* ── 品牌标题 ── */
 .sufin-title {
     font-size: 2.2rem;
     font-weight: 800;
-    letter-spacing: 0.03em;
-    background: linear-gradient(100deg, #38bdf8 0%, #818cf8 55%, #34d399 100%);
+    letter-spacing: 0.02em;
+    background: linear-gradient(110deg, #1e3a8a 0%, #4338ca 55%, #0e7490 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -53,17 +55,19 @@ header[data-testid="stHeader"] * { color: #5a8aaa !important; }
     margin-bottom: 0.3rem;
 }
 .sufin-subtitle {
-    font-size: 0.78rem;
-    color: #3a6a88;
+    font-size: 0.76rem;
+    color: #94a3b8;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     margin-bottom: 2rem;
 }
+
+/* ── 侧边栏品牌 ── */
 .sufin-logo {
     font-size: 1.4rem;
     font-weight: 800;
     letter-spacing: 0.08em;
-    background: linear-gradient(90deg, #38bdf8, #818cf8);
+    background: linear-gradient(90deg, #1e3a8a, #4338ca);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -72,7 +76,7 @@ header[data-testid="stHeader"] * { color: #5a8aaa !important; }
 }
 .sufin-tagline {
     font-size: 0.65rem;
-    color: #1e4a6a;
+    color: #cbd5e1;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     margin-bottom: 1.2rem;
@@ -81,64 +85,61 @@ header[data-testid="stHeader"] * { color: #5a8aaa !important; }
 
 /* ── 按钮 ── */
 .stButton > button {
-    background: rgba(14, 165, 233, 0.05) !important;
-    border: 1px solid rgba(14, 165, 233, 0.2) !important;
-    color: #7ab8d4 !important;
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    color: #475569 !important;
     border-radius: 10px !important;
     font-size: 0.81rem !important;
-    transition: all 0.18s ease !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
+    transition: all 0.16s ease !important;
 }
 .stButton > button:hover {
-    background: rgba(14, 165, 233, 0.12) !important;
-    border-color: rgba(56, 189, 248, 0.55) !important;
-    color: #38bdf8 !important;
-    box-shadow: 0 0 14px rgba(14, 165, 233, 0.18) !important;
+    background: #f8fafc !important;
+    border-color: #94a3b8 !important;
+    color: #1e3a8a !important;
+    box-shadow: 0 2px 8px rgba(37,99,235,0.1) !important;
 }
 
-/* ── 聊天消息气泡 ── */
+/* ── 聊天消息 ── */
 [data-testid="stChatMessage"] {
-    background: #0c1a30 !important;
-    border: 1px solid rgba(14, 165, 233, 0.1) !important;
-    border-radius: 14px !important;
+    background: #ffffff !important;
+    border: 1px solid #e9eef5 !important;
+    border-radius: 16px !important;
     margin-bottom: 0.8rem !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05) !important;
     padding: 0.2rem 0.4rem !important;
 }
 
 /* ── 聊天输入区域 ── */
 [data-testid="stBottom"] {
-    background: linear-gradient(0deg, #050d1c 80%, transparent) !important;
-    padding-bottom: 0.5rem !important;
+    background: linear-gradient(0deg, #f1f5f9 70%, transparent) !important;
 }
 [data-testid="stChatInput"],
 div[data-testid="stChatInputContainer"] {
-    background: #0c1a30 !important;
-    border: 1px solid rgba(14, 165, 233, 0.25) !important;
-    border-radius: 14px !important;
-    box-shadow: 0 0 0 1px rgba(14, 165, 233, 0.08) !important;
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 16px !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
 }
 [data-testid="stChatInput"]:focus-within,
 div[data-testid="stChatInputContainer"]:focus-within {
-    border-color: rgba(56, 189, 248, 0.55) !important;
-    box-shadow: 0 0 18px rgba(14, 165, 233, 0.12) !important;
+    border-color: #2563eb !important;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1) !important;
 }
 [data-testid="stChatInput"] textarea,
 [data-testid="stChatInputTextArea"] {
     background: transparent !important;
-    color: #dde6f0 !important;
-    caret-color: #38bdf8 !important;
+    color: #0f172a !important;
 }
 
 /* ── 分割线 ── */
-hr { border-color: rgba(14, 165, 233, 0.1) !important; }
+hr { border-color: #e2e8f0 !important; }
 
 /* ── 滚动条 ── */
 ::-webkit-scrollbar { width: 4px; height: 4px; }
-::-webkit-scrollbar-track { background: #050d1c; }
-::-webkit-scrollbar-thumb { background: #1a3a58; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #1e5070; }
-
-/* ── footer 隐藏 ── */
-footer { display: none !important; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -166,6 +167,10 @@ EXAMPLES = [
     "AAPL、GOOGL、META、AMZN 四只科技股2026年怎么配置最优？",
     "帮我看看招商银行(600036)和中国平安(601318)两只股票2026年的最优组合",
 ]
+
+# ── 头像 ─────────────────────────────────────────────────────────────────────
+AVATAR_USER      = "🧑‍💼"
+AVATAR_ASSISTANT = "📊"
 
 # ── 侧边栏 ────────────────────────────────────────────────────────────────────
 with st.sidebar:
@@ -221,22 +226,23 @@ current_tid = st.session_state['current_thread']
 current_thread = st.session_state['threads'][current_tid]
 
 for msg in current_thread['display']:
-    with st.chat_message(msg['role']):
+    avatar = AVATAR_USER if msg['role'] == 'user' else AVATAR_ASSISTANT
+    with st.chat_message(msg['role'], avatar=avatar):
         st.markdown(msg['content'])
 
 pending    = st.session_state.pop('pending', None)
-user_input = st.chat_input("描述您想分析的投资组合，例如：分析苹果、微软、英伟达 2024 年的组合")
+user_input = st.chat_input("描述您想分析的投资组合，例如：分析苹果、微软、英伟达 2026 年应该如何配置？")
 prompt     = pending or user_input
 
 if prompt:
-    with st.chat_message('user'):
+    with st.chat_message('user', avatar=AVATAR_USER):
         st.markdown(prompt)
     current_thread['display'].append({'role': 'user', 'content': prompt})
 
     if len(current_thread['display']) == 1:
         current_thread['name'] = prompt[:18] + ('…' if len(prompt) > 18 else '')
 
-    with st.chat_message('assistant'):
+    with st.chat_message('assistant', avatar=AVATAR_ASSISTANT):
         with st.spinner('智能体分析中，请稍候（约 20–40 秒）…'):
             try:
                 agent = get_agent()
