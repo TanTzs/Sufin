@@ -19,27 +19,27 @@ st.set_page_config(
 # ── 全局样式注入 ───────────────────────────────────────────────────────────────
 st.markdown("""
 <style>
-/* ── 顶部栏（深色）── */
+/* ── 顶部栏 ── */
 header[data-testid="stHeader"] {
-    background: #0f172a !important;
-    border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+    background: #1e3a5f !important;
+    border-bottom: 1px solid rgba(255,255,255,0.08) !important;
 }
-header[data-testid="stHeader"] * { color: #475569 !important; }
+header[data-testid="stHeader"] * { color: #7aa0be !important; }
 .stDeployButton { display: none !important; }
 footer { display: none !important; }
 
 /* ── 主区域（浅色）── */
-.stApp { background: #f1f5f9; }
+.stApp { background: #f4f7fa; }
 .block-container {
     padding-top: 2.5rem !important;
     padding-bottom: 5rem !important;
     max-width: 860px !important;
 }
 
-/* ── 侧边栏（深色）── */
+/* ── 侧边栏 ── */
 [data-testid="stSidebar"] {
-    background: #0f172a !important;
-    border-right: 1px solid rgba(255,255,255,0.05) !important;
+    background: #1e3a5f !important;
+    border-right: 1px solid rgba(255,255,255,0.06) !important;
 }
 [data-testid="stSidebar"] p,
 [data-testid="stSidebar"] span,
@@ -48,22 +48,22 @@ footer { display: none !important; }
 [data-testid="stSidebar"] h1,
 [data-testid="stSidebar"] h2,
 [data-testid="stSidebar"] h3 {
-    color: #94a3b8 !important;
+    color: #a8c4d8 !important;
 }
 
-/* ── 侧边栏按钮（深色风格）── */
+/* ── 侧边栏按钮 ── */
 [data-testid="stSidebar"] .stButton > button {
-    background: rgba(255,255,255,0.04) !important;
+    background: rgba(255,255,255,0.05) !important;
     border: 1px solid rgba(255,255,255,0.1) !important;
-    color: #94a3b8 !important;
+    color: #a8c4d8 !important;
     border-radius: 10px !important;
     font-size: 0.81rem !important;
     transition: all 0.16s ease !important;
 }
 [data-testid="stSidebar"] .stButton > button:hover {
-    background: rgba(255,255,255,0.08) !important;
-    border-color: rgba(148,163,184,0.4) !important;
-    color: #e2e8f0 !important;
+    background: rgba(255,255,255,0.1) !important;
+    border-color: rgba(168,196,216,0.5) !important;
+    color: #e8f2fa !important;
 }
 
 /* ── 品牌标题（主区域）── */
@@ -91,7 +91,7 @@ footer { display: none !important; }
     font-size: 1.4rem;
     font-weight: 800;
     letter-spacing: 0.08em;
-    background: linear-gradient(90deg, #38bdf8, #818cf8) !important;
+    background: linear-gradient(90deg, #7dd3fc, #c4b5fd) !important;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
@@ -100,7 +100,7 @@ footer { display: none !important; }
 }
 .sufin-tagline {
     font-size: 0.65rem;
-    color: #1e3a5a !important;
+    color: #3a6a8a !important;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     margin-bottom: 1.2rem;
