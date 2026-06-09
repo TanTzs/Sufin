@@ -101,13 +101,14 @@ def download_stock_data(
     qt = query_type.lower()
 
     if qt == 'price':
-        recent = prices_df.tail(10).round(4)
+        recent = prices_df.tail(10).round(4).copy()
+        recent.index = recent.index.strftime('%Y-%m-%d')
         output = {
             '状态': '下载成功',
             '市场': 'A股' if market.upper() == 'A' else '美股',
             '股票代码': codes,
             '有效交易日数': len(prices_df),
-            '日期范围': f'{str(prices_df.index[0])} 至 {str(prices_df.index[-1])}',
+            '日期范围': f'{prices_df.index[0].strftime("%Y-%m-%d")} 至 {prices_df.index[-1].strftime("%Y-%m-%d")}',
             '最近10日收盘价': recent.to_dict(orient='index'),
             '区间最高价': prices_df.max().round(4).to_dict(),
             '区间最低价': prices_df.min().round(4).to_dict(),

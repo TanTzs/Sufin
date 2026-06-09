@@ -1,5 +1,6 @@
 import os
 import uuid
+import html as _html
 import streamlit as st
 from dotenv import load_dotenv
 from datetime import date
@@ -18,16 +19,16 @@ st.set_page_config(
 # ── 全局样式注入 ───────────────────────────────────────────────────────────────
 st.markdown("""
 <style>
-/* ── 顶部栏 ── */
+/* ── 顶部栏（深色）── */
 header[data-testid="stHeader"] {
-    background: #ffffff !important;
-    border-bottom: 1px solid #e2e8f0 !important;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04) !important;
+    background: #0f172a !important;
+    border-bottom: 1px solid rgba(255,255,255,0.06) !important;
 }
+header[data-testid="stHeader"] * { color: #475569 !important; }
 .stDeployButton { display: none !important; }
 footer { display: none !important; }
 
-/* ── 主区域 ── */
+/* ── 主区域（浅色）── */
 .stApp { background: #f1f5f9; }
 .block-container {
     padding-top: 2.5rem !important;
@@ -35,14 +36,37 @@ footer { display: none !important; }
     max-width: 860px !important;
 }
 
-/* ── 侧边栏 ── */
+/* ── 侧边栏（深色）── */
 [data-testid="stSidebar"] {
-    background: #ffffff !important;
-    border-right: 1px solid #e2e8f0 !important;
-    box-shadow: 2px 0 8px rgba(0,0,0,0.04) !important;
+    background: #0f172a !important;
+    border-right: 1px solid rgba(255,255,255,0.05) !important;
+}
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] span,
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] div,
+[data-testid="stSidebar"] h1,
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3 {
+    color: #94a3b8 !important;
 }
 
-/* ── 品牌标题 ── */
+/* ── 侧边栏按钮（深色风格）── */
+[data-testid="stSidebar"] .stButton > button {
+    background: rgba(255,255,255,0.04) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    color: #94a3b8 !important;
+    border-radius: 10px !important;
+    font-size: 0.81rem !important;
+    transition: all 0.16s ease !important;
+}
+[data-testid="stSidebar"] .stButton > button:hover {
+    background: rgba(255,255,255,0.08) !important;
+    border-color: rgba(148,163,184,0.4) !important;
+    color: #e2e8f0 !important;
+}
+
+/* ── 品牌标题（主区域）── */
 .sufin-title {
     font-size: 2.2rem;
     font-weight: 800;
@@ -67,23 +91,23 @@ footer { display: none !important; }
     font-size: 1.4rem;
     font-weight: 800;
     letter-spacing: 0.08em;
-    background: linear-gradient(90deg, #1e3a8a, #4338ca);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    background: linear-gradient(90deg, #38bdf8, #818cf8) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
     padding: 1rem 0 0.2rem 0;
     display: block;
 }
 .sufin-tagline {
     font-size: 0.65rem;
-    color: #cbd5e1;
+    color: #1e3a5a !important;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     margin-bottom: 1.2rem;
     display: block;
 }
 
-/* ── 按钮 ── */
+/* ── 主区域按钮 ── */
 .stButton > button {
     background: #ffffff !important;
     border: 1px solid #e2e8f0 !important;
@@ -172,6 +196,20 @@ EXAMPLES = [
 AVATAR_USER      = "🧑‍💼"
 AVATAR_ASSISTANT = "📊"
 
+def _user_bubble(content: str):
+    safe = _html.escape(content).replace('\n', '<br>')
+    st.markdown(f'''
+<div style="display:flex;justify-content:flex-end;align-items:flex-end;
+            gap:10px;margin:4px 0 14px 0;">
+  <div style="background:#1d4ed8;color:#fff;padding:11px 16px;
+              border-radius:20px 20px 4px 20px;max-width:72%;
+              font-size:0.93rem;line-height:1.55;word-break:break-word;
+              box-shadow:0 2px 6px rgba(29,78,216,0.2);">
+    {safe}
+  </div>
+  <span style="font-size:1.5rem;flex-shrink:0;margin-bottom:2px;">{AVATAR_USER}</span>
+</div>''', unsafe_allow_html=True)
+
 # ── 侧边栏 ────────────────────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown('<div class="sufin-logo">⚡ SUFIN</div>', unsafe_allow_html=True)
@@ -226,17 +264,18 @@ current_tid = st.session_state['current_thread']
 current_thread = st.session_state['threads'][current_tid]
 
 for msg in current_thread['display']:
-    avatar = AVATAR_USER if msg['role'] == 'user' else AVATAR_ASSISTANT
-    with st.chat_message(msg['role'], avatar=avatar):
-        st.markdown(msg['content'])
+    if msg['role'] == 'user':
+        _user_bubble(msg['content'])
+    else:
+        with st.chat_message('assistant', avatar=AVATAR_ASSISTANT):
+            st.markdown(msg['content'])
 
 pending    = st.session_state.pop('pending', None)
 user_input = st.chat_input("描述您想分析的投资组合，例如：分析苹果、微软、英伟达 2026 年应该如何配置？")
 prompt     = pending or user_input
 
 if prompt:
-    with st.chat_message('user', avatar=AVATAR_USER):
-        st.markdown(prompt)
+    _user_bubble(prompt)
     current_thread['display'].append({'role': 'user', 'content': prompt})
 
     if len(current_thread['display']) == 1:
