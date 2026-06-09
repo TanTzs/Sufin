@@ -1,5 +1,6 @@
 akshare>=1.18.64
 langgraph>=0.2.0
+tradingagents @ git+https://github.com/hsliuping/TradingAgents-CN.git
 langchain>=1.3.2
 langchain-deepseek>=1.0.1
 langchain-tavily>=0.2.18

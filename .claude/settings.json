@@ -7,7 +7,12 @@
       "Bash(head -80 /tmp/tradingagents/tradingagents/agents/schemas.py)",
       "Read(//tmp/tradingagents/tradingagents/agents/**)",
       "WebFetch(domain:raw.githubusercontent.com)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "Read(//tmp/TradingAgents-CN/**)",
+      "Bash(find /tmp/TradingAgents-CN -type f -name \"*.py\" | head -20)",
+      "Read(//tmp/**)",
+      "Bash(ls -la /tmp/TradingAgents-CN/)",
+      "Bash(xargs ls -la)"
     ]
   }
 }
