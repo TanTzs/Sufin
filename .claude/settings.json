@@ -1,7 +1,13 @@
 {
   "permissions": {
     "allow": [
-      "PowerShell(New-Item -ItemType Directory -Force \"e:\\\\Sufe\\\\SufinAgent\\\\.streamlit\")"
+      "PowerShell(New-Item -ItemType Directory -Force \"e:\\\\Sufe\\\\SufinAgent\\\\.streamlit\")",
+      "Bash(ls -la /tmp/tradingagents/tradingagents/graph/)",
+      "Read(//tmp/tradingagents/tradingagents/**)",
+      "Bash(head -80 /tmp/tradingagents/tradingagents/agents/schemas.py)",
+      "Read(//tmp/tradingagents/tradingagents/agents/**)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:github.com)"
     ]
   }
 }

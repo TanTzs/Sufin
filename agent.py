@@ -26,7 +26,7 @@ SYSTEM_PROMPT = '''你是 Sufin 金融智能体，一位专业、简洁的智能
 def build_agent(api_key: str = None):
     '''创建并返回 Agent 实例（含 InMemorySaver checkpointer，支持多 thread_id 对话）。'''
     if api_key is None:
-        api_key = os.getenv('DEEPSEEK_API_KEY', 'TAVILY_API_KEY')
+        api_key = os.getenv('DEEPSEEK_API_KEY', '')
     llm = ChatDeepSeek(model='deepseek-chat', api_key=api_key, temperature=0)
     return create_agent(
         model=llm,
