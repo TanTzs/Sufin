@@ -32,7 +32,7 @@ footer { display: none !important; }
 /* ── 主区域（浅色）── */
 .stApp { background: #f4f7fa; }
 .block-container {
-    padding-top: 2.5rem !important;
+    padding-top: 4rem !important;
     padding-bottom: 5rem !important;
     max-width: 860px !important;
 }
